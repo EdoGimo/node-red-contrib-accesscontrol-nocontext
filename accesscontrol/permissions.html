@@ -1,0 +1,294 @@
+<script type="text/javascript">
+    RED.nodes.registerType('permissions', {
+        category: 'access control',
+        color: '#87a980',
+        defaults: {
+            name: { value: "" },
+            who: { value: "", validate: RED.validators.typedInput("whoType"), required: true },
+            whoType: { value: "str" },
+
+            createAny: { value: false, validate: RED.validators.typedInput("createAnyType") },
+            createAnyType: { value: "bool" },
+            createOwn: { value: false, validate: RED.validators.typedInput("createOwnType") },
+            createOwnType: { value: "bool" },
+            create: { value: "", validate: RED.validators.typedInput("createType") },
+            createType: { value: "str" },
+
+            readAny: { value: false, validate: RED.validators.typedInput("readAnyType") },
+            readAnyType: { value: "bool" },
+            readOwn: { value: false, validate: RED.validators.typedInput("readOwnType") },
+            readOwnType: { value: "bool" },
+            read: { value: "", validate: RED.validators.typedInput("readType") },
+            readType: { value: "str" },
+
+            updateAny: { value: false, validate: RED.validators.typedInput("updateAnyType") },
+            updateAnyType: { value: "bool" },
+            updateOwn: { value: false, validate: RED.validators.typedInput("updateOwnType") },
+            updateOwnType: { value: "bool" },
+            update: { value: "", validate: RED.validators.typedInput("updateType") },
+            updateType: { value: "str" },
+
+            deleteAny: { value: false, validate: RED.validators.typedInput("deleteAnyType") },
+            deleteAnyType: { value: "bool" },
+            deleteOwn: { value: false, validate: RED.validators.typedInput("deleteOwnType") },
+            deleteOwnType: { value: "bool" },
+            delete: { value: "", validate: RED.validators.typedInput("deleteType") },
+            deleteType: { value: "str" },
+
+            what: { value: "", validate: RED.validators.typedInput("whatType"), required: true },
+            whatType: { value: "str" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-shield",
+        label: function () {
+            return this.name || "permissions";
+        },
+        oneditprepare: function () {
+            $("#node-input-who").typedInput({
+                default: this.whoType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whoType")
+            });
+
+            $("#node-input-what").typedInput({
+                default: this.whatType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whatType")
+            });
+
+            $("#node-input-createAny").typedInput({
+                default: this.createAnyType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-createAnyType")
+            });
+
+            $("#node-input-createOwn").typedInput({
+                default: this.createOwnType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-createOwnType")
+            });
+
+            $("#node-input-create").typedInput({
+                default: this.createType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-createType")
+            });
+
+            $("#node-input-readAny").typedInput({
+                default: this.readAnyType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-readAnyType")
+            });
+
+            $("#node-input-readOwn").typedInput({
+                default: this.readOwnType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-readOwnType")
+            });
+
+            $("#node-input-read").typedInput({
+                default: this.readType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-readType")
+            });
+
+            $("#node-input-updateAny").typedInput({
+                default: this.updateAnyType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-updateAnyType")
+            });
+
+            $("#node-input-updateOwn").typedInput({
+                default: this.updateOwnType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-updateOwnType")
+            });
+
+            $("#node-input-update").typedInput({
+                default: this.updateType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-updateType")
+            });
+
+            $("#node-input-deleteAny").typedInput({
+                default: this.deleteAnyType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-deleteAnyType")
+            });
+
+            $("#node-input-deleteOwn").typedInput({
+                default: this.deleteOwnType || "bool",
+                types: ["bool", "msg"],
+                typeField: $("#node-input-deleteOwnType")
+            });
+
+            $("#node-input-delete").typedInput({
+                default: this.deleteType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-deleteType")
+            });
+        },
+        onsave: function () {
+            this.whoType = $("#node-input-whoType").val();
+            this.whatType = $("#node-input-whatType").val();
+            this.createAnyType = $("#node-input-createAnyType").val();
+            this.createOwnType = $("#node-input-createOwnType").val();
+            this.createType = $("#node-input-createType").val();
+            this.readAnyType = $("#node-input-readAnyType").val();
+            this.readOwnType = $("#node-input-readOwnType").val();
+            this.readType = $("#node-input-readType").val();
+            this.updateAnyType = $("#node-input-updateAnyType").val();
+            this.updateOwnType = $("#node-input-updateOwnType").val();
+            this.updateType = $("#node-input-updateType").val();
+            this.deleteAnyType = $("#node-input-deleteAnyType").val();
+            this.deleteOwnType = $("#node-input-deleteOwnType").val();
+            this.deleteType = $("#node-input-deleteType").val();
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="permissions">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <p>Check the "Help" tab for more information on the values.</p>
+
+    <hr>
+    
+    <div class="form-row">
+        <label for="node-input-who"><i class="fa fa-user-circle"></i> Who</label>
+        <input type="text" id="node-input-who" placeholder="Role">
+        <input type="hidden" id="node-input-whoType">
+    </div>
+    
+    <hr>
+
+    <!--CREATE-->
+    <div>
+        <details>
+            <summary><a><b>Create</b></a></summary>
+            &nbsp;
+            <div class="form-row">
+                <label for="node-input-createAny"><i class="fa fa-plus-square-o"></i> Create ANY</label>
+                <input type="text" id="node-input-createAny">
+                <input type="hidden" id="node-input-createAnyType">
+            </div>
+            <div class="form-row">
+                <label for="node-input-createOwn"><i class="fa fa-plus-square"></i> Create OWN</label>
+                <input type="text" id="node-input-createOwn">
+                <input type="hidden" id="node-input-createOwnType">
+            </div>
+
+            <div class="form-row">
+                <label for="node-input-create"><i class="fa fa-wrench"></i> Create attributes</label>
+                <input type="text" id="node-input-create" placeholder="Attribute1, Attribute2">
+                <input type="hidden" id="node-input-createType">
+            </div>
+        </details>
+    </div>
+
+    <hr>
+
+    <!--READ-->
+    <div>
+        <details>
+            <summary><a><b>Read</b></a></summary>
+            &nbsp;
+            <div class="form-row">
+                <label for="node-input-readAny"><i class="fa fa-bookmark-o"></i> Read ANY</label>
+                <input type="text" id="node-input-readAny">
+                <input type="hidden" id="node-input-readAnyType">
+            </div>
+            <div class="form-row">
+                <label for="node-input-readOwn"><i class="fa fa-bookmark"></i> Read OWN</label>
+                <input type="text" id="node-input-readOwn">
+                <input type="hidden" id="node-input-readOwnType">
+            </div>
+
+            <div class="form-row">
+                <label for="node-input-read"><i class="fa fa-wrench"></i> Read attributes</label>
+                <input type="text" id="node-input-read" placeholder="Attribute1, Attribute2">
+                <input type="hidden" id="node-input-readType">
+            </div>
+        </details>
+    </div>
+
+    <hr>
+
+    <!--UPDATE-->
+    <div>
+        <details>
+            <summary><a><b>Update</b></a></summary>
+            &nbsp;
+            <div class="form-row">
+                <label for="node-input-updateAny"><i class="fa fa-pencil-square-o"></i> Update ANY</label>
+                <input type="text" id="node-input-updateAny">
+                <input type="hidden" id="node-input-updateAnyType">
+            </div>
+            <div class="form-row">
+                <label for="node-input-updateOwn"><i class="fa fa-pencil-square"></i> Update OWN</label>
+                <input type="text" id="node-input-updateOwn">
+                <input type="hidden" id="node-input-updateOwnType">
+            </div>
+
+            <div class="form-row">
+                <label for="node-input-update"><i class="fa fa-wrench"></i> Update attributes</label>
+                <input type="text" id="node-input-update" placeholder="Attribute1, Attribute2">
+                <input type="hidden" id="node-input-updateType">
+            </div>
+        </details>
+    </div>
+
+    <hr>
+
+    <!--DELETE-->
+    <div>
+        <details>
+            <summary><a><b>Delete</b></a></summary>
+            &nbsp;
+            <div class="form-row">
+                <label for="node-input-deleteAny"><i class="fa fa-minus-square-o"></i> Delete ANY</label>
+                <input type="text" id="node-input-deleteAny">
+                <input type="hidden" id="node-input-deleteAnyType">
+            </div>
+            <div class="form-row">
+                <label for="node-input-deleteOwn"><i class="fa fa-minus-square"></i> Delete OWN</label>
+                <input type="text" id="node-input-deleteOwn">
+                <input type="hidden" id="node-input-deleteOwnType">
+            </div>
+
+            <div class="form-row">
+                <label for="node-input-delete"><i class="fa fa-wrench"></i> Delete attributes</label>
+                <input type="text" id="node-input-delete" placeholder="Attribute1, Attribute2">
+                <input type="hidden" id="node-input-deleteType">
+            </div>
+        </details>
+    </div>
+
+    <hr>
+
+    <div class="form-row">
+        <label for="node-input-what"><i class="fa fa-object-group"></i> What</label>
+        <input type="text" id="node-input-what" placeholder="Object">
+        <input type="hidden" id="node-input-whatType">
+    </div>
+    &nbsp;
+    
+</script>
+
+<script type="text/html" data-help-name="permissions">
+    <p>Checks if a specified role has certain permissionss to access an object. Similar to permission, but supports "msg" for the CRUD fields, the evaluation of multiple permissions concurrently and takes into account CRUD attributes.</p>
+    <p>The attributes that can be set are:</p>
+    <ul>
+    <li>WHO: the role;</li>
+    <li>CRUD ANY/OWN: a boolean for each CRUD (Create, Read, Update, Delete) action, in both the ANY and OWN variants, plus the potential CRUD attributes;</li>
+    <li>WHAT: the object to be accessed by the role.</li>
+    </ul>
+    <p>The node returns in the payload the result (true/false).</p>
+    <p><b>Note:</b> All values can also be specified using the msg attributes: e.g., to get the content of "msg.role" write only "role" after changing the type.</p>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

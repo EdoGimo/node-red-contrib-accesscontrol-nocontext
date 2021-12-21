@@ -1,0 +1,29 @@
+<script type="text/javascript">
+    RED.nodes.registerType('AC lock', {
+        category: 'access control',
+        color: '#ca9758',
+        defaults: {
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 0,
+        icon: "font-awesome/fa-shield",
+        label: function () {
+            return this.name || "AC lock";
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="AC lock">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="AC lock">
+    <p>Blocks further changes to the Access Control instance. All attempts to modify it after calling this node are reported as a warning.</p>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

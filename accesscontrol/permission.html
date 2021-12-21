@@ -1,0 +1,89 @@
+<script type="text/javascript">
+    RED.nodes.registerType('permission', {
+        category: 'access control',
+        color: '#87a980',
+        defaults: {
+            name: { value: "" },
+            who: { value: "", validate: RED.validators.typedInput("whoType"), required: true },
+            whoType: { value: "str" },
+            crud: { value: "create", required: true },
+            any: { value: false },
+            what: { value: "", validate: RED.validators.typedInput("whatType"), required: true },
+            whatType: { value: "str" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-shield",
+        label: function () {
+            return this.name || "permission";
+        },
+        oneditprepare: function () {
+            $("#node-input-who").typedInput({
+                default: this.whoType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whoType")
+            });
+
+            $("#node-input-what").typedInput({
+                default: this.whatType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whatType")
+            });
+        },
+        onsave: function () {
+            this.whoType = $("#node-input-whoType").val();
+            this.whatType = $("#node-input-whatType").val();
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="permission">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <p>Check the "Help" tab for more information on the values.</p>
+    <div class="form-row">
+        <label for="node-input-who"><i class="fa fa-user-circle"></i> Who</label>
+        <input type="text" id="node-input-who" placeholder="Role">
+        <input type="hidden" id="node-input-whoType">
+    </div>
+    <div class="form-row">
+        <label for="node-input-crud"><i class="fa fa-briefcase"></i> CRUD</label>
+        <select id="node-input-crud">
+            <option value="create">Create</option>
+            <option value="read">Read</option>
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-any">&nbsp;</label>            
+        <input type="checkbox" id="node-input-any" style="display: inline-block; width: auto; vertical-align: top;">
+        <label for="node-input-any" style="width: auto"><i class="fa fa-users" style="transform: scaleX(-1);"></i> Check if Any, uncheck if Own</label>
+    </div>
+    <div class="form-row">
+        <label for="node-input-what"><i class="fa fa-object-group"></i> What</label>
+        <input type="text" id="node-input-what" placeholder="Object">
+        <input type="hidden" id="node-input-whatType">
+    </div>
+    &nbsp;
+    
+</script>
+
+<script type="text/html" data-help-name="permission">
+    <p>Checks if a specified role has a certain permission to access an object, without taking into consideration attributes.</p> 
+    <p>However, to check permissions, it is preferred to use the <b>permissions</b> node as it supports control of more permissions at once, along with attributes. The present node is not removed to offer a way to access directly the specified attributes.</p>
+    <p>The attributes that can be set are:</p>
+    <ul>
+    <li>WHO: the role;</li>
+    <li>CRUD: the CRUD (Create, Read, Update, Delete) action;</li>
+    <li>ANY/OWN checkbox: checked if the scope is set to &#39;any&#39;, unchecked if set to &#39;own&#39; (e.g., createAny vs createOwn);</li>
+    <li>WHAT: the object to be accessed by the role.</li>
+    </ul>
+    <p>The node returns in the payload the result (true/false) and in msg.attributes the attributes that may have been granted ('*' if none was specified).</p>
+    <p><b>Note:</b> WHO and WHAT values can also be specified using the msg attributes: e.g., to get the content of "msg.role" write only "role" after changing the type.</p>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

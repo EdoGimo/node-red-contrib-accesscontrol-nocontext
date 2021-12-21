@@ -1,0 +1,30 @@
+<script type="text/javascript">
+    RED.nodes.registerType('AC init', {
+        category: 'access control',
+        color: '#ca9758',
+        defaults: {
+            name: { value: "" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-shield",
+        label: function () {
+            return this.name || "AC init";
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="AC init">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+</script>
+
+<script type="text/html" data-help-name="AC init">
+    <p>Initializes the Access Control instance that is used in the other AC nodes, sending it via payload. </p>
+    <p>Put this node at the beginning of the flow.</p>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

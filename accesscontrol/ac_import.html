@@ -1,0 +1,54 @@
+<script type="text/javascript">
+    RED.nodes.registerType('AC import', {
+        category: 'access control',
+        color: '#ca9758',
+        defaults: {
+            name: { value: "" },
+            mongo: { value: "", validate: RED.validators.typedInput("mongoType") },
+            mongoType: { value: "str" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-download",
+        label: function () {
+            return this.name || "AC import";
+        },
+        oneditprepare: function () {
+            $("#node-input-mongo").typedInput({
+                default: this.mongoType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-mongoType")
+            });
+        },
+        onsave: function () {
+            this.mongoType = $("#node-input-mongoType").val();
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="AC import">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <p>Check the "Help" tab for more information on the parameters.</p>
+
+    <hr>
+
+    <div class="form-row">
+        <label for="node-input-mongo"><i class="fa fa-id-card-o"></i> MongoDB '_id'</label>
+        <input type="text" id="node-input-mongo" placeholder="_id value">
+        <input type="hidden" id="node-input-mongoType">
+    </div>
+    <p>Write the value of '_id' specified for mongoDB.</p>
+
+</script>
+
+<script type="text/html" data-help-name="AC import">
+    <p>Imports from the payload, as a JSON (string), the given AC permissions and applies them in the current flow context. Ensure the JSON contains the permission object in the proper format.</p>
+    <p>Already specified permissions will be overridden with the imported ones.</p>
+    <p>Additionally, importing from MongoDB is simplified by providing the '_id' value, which identifies the document and has to be removed before importing the JSON into Access Control.</p>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

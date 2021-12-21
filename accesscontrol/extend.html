@@ -1,0 +1,83 @@
+<script type="text/javascript">
+    RED.nodes.registerType('extend', {
+        category: 'access control',
+        color: '#ca9758',
+        defaults: {
+            name: { value: "" },
+            who: { value: "", validate: RED.validators.typedInput("whoType"), required: true },
+            whoType: { value: "str" },
+            what: { value: "", validate: RED.validators.typedInput("whatType"), required: true },
+            whatType: { value: "str" }
+        },
+        inputs: 1,
+        outputs: 1,
+        icon: "font-awesome/fa-shield",
+        label: function () {
+            return this.name || "extend";
+        },
+        oneditprepare: function () {
+            $("#node-input-who").typedInput({
+                default: this.whoType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whoType")
+            });
+
+            $("#node-input-what").typedInput({
+                default: this.whatType || "str",
+                types: ["str", "msg"],
+                typeField: $("#node-input-whatType")
+            });
+        },
+        onsave: function () {
+            this.whoType = $("#node-input-whoType").val();
+            this.whatType = $("#node-input-whatType").val();
+        }
+    });
+</script>
+
+
+<script type="text/html" data-template-name="extend">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <p>Check the "Help" tab for more information on the parameters.</p>
+
+    <hr>
+
+    <div class="form-row">
+        <label for="node-input-who"><i class="fa fa-user-circle"></i> Beneficiary</label>
+        <input type="text" id="node-input-who" placeholder="Role">
+        <input type="hidden" id="node-input-whoType">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-what"><i class="fa fa-user-circle-o"></i> Inherit from</label>
+        <input type="text" id="node-input-what" placeholder="Role">
+        <input type="hidden" id="node-input-whatType">
+    </div>
+    &nbsp;
+    
+</script>
+
+<script type="text/html" data-help-name="extend">
+    <p>Grants to a certain role the permissions of another role.</p>
+    <p>Permissions are not added directly to the new role, but a reference to the other role is added. This means that if the original role (A) is removed or any permission is denied, the beneficiary role (B) loses all the permissions or those denied. However, if a permission that was inherited is deniend only from B, permission nodes will return that B has not lost that permission, as the reference to A still exists.</p>
+    <p>Use the extend node with this concept in mind.</p>
+    <hr>
+    <p>The attributes that can be set are:</p>
+    <ul>
+        <li>BENEFICIARY: the role (even not existing) that will receive the permissions;</li>
+        <li>INHERIT FROM: the (existing) role from which permissions are granted to the previous role.</li>
+    </ul>
+    <p><b>Note:</b> All fields can also be specified using the msg attributes: e.g., to get the content of "msg.role" write only "role" after changing the type. Arrays can be used too, separating values with a comma in the case of string inputs.</p>
+    <p>Some characters are not supported in the string field of role and resource: &,<,>,",',/ and `. However, checks are not made on the content of msg attributes, if those are instead specified.</p>
+    <p>Notes on inheritance (from the link above, without examples):
+        <ul>
+            <li>A role cannot extend itself.</li>
+            <li>Cross-inheritance is not allowed.</li>
+            <li>A role cannot (pre)extend a non-existing role. In other words, you should first create the base role.</li>
+        </ul>
+    <h4>AccessControl module's logic</h4>
+    <p>Details on module logic at <a href="https://www.npmjs.com/package/accesscontrol">npmjs.com/accesscontrol</a>.</p>
+</script>

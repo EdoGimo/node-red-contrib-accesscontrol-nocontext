@@ -1,0 +1,46 @@
+{
+	"name": "node-red-contrib-accesscontrol-nocontext",
+	"version": "0.9.0",
+	"description": "Node-RED wrapper for the accesscontrol npm module. Without using context.",
+	"homepage": "https://flows.nodered.org/node/node-red-contrib-accesscontrol",
+	"dependencies": {
+		"accesscontrol": "2.2.1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/edogimo/node-red-contrib-accesscontrol.git"
+	},
+	"keywords": [
+		"node-red",
+		"accesscontrol",
+		"access",
+		"control",
+		"RBAC",
+		"ABAC",
+		"permissions",
+		"mongodb"
+	],
+	"node-red": {
+		"nodes": {
+			"ACInit": "accesscontrol/ac_init.js",
+			"ACExport": "accesscontrol/ac_export.js",
+			"ACImport": "accesscontrol/ac_import.js",
+			"Permission": "accesscontrol/permission.js",
+			"Permissions": "accesscontrol/permissions.js",
+			"Grant": "accesscontrol/grant.js",
+			"Deny": "accesscontrol/deny.js",
+			"Extend": "accesscontrol/extend.js",
+			"Remove": "accesscontrol/remove.js",
+			"Lock": "accesscontrol/ac_lock.js"
+		}
+	},
+	"devDependencies": {
+        "mocha": "^9.1.3",
+        "node-red": "^2.1.2",
+        "node-red-node-test-helper": "^0.2.7",
+        "should": "^13.2.3"
+    },
+	"scripts": {
+		"test": "mocha \"test/*\""
+	}
+}
