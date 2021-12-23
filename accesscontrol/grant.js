@@ -220,7 +220,7 @@ module.exports = function (RED) {
             if(attr){
                 return "Granted to role '" + who + "' permission to '"+ action +"' on resource '" + what + "' with attributes [" + attr + "].";
             } else {
-                return "Granted to role '" + who + "' permission to '"+ action +"' on resource '" + what + "' whitout attributes.";
+                return "Granted to role '" + who + "' permission to '"+ action +"' on resource '" + what + "' without attributes.";
             }
         }
     }
