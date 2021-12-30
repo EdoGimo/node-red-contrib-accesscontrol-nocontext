@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function ExtendNode(config) {
+    function Extend2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -139,5 +139,5 @@ module.exports = function (RED) {
             }
         }
     }
-    RED.nodes.registerType("extend", ExtendNode);
+    RED.nodes.registerType("ACn extend", Extend2Node);
 }

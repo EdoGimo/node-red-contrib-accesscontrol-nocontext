@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function ACLockNode(config) {
+    function ACLock2Node(config) {
         RED.nodes.createNode(this, config);
 
         //MAIN code
@@ -39,5 +39,5 @@ module.exports = function (RED) {
 
         });
     }
-    RED.nodes.registerType("AC lock", ACLockNode);
+    RED.nodes.registerType("ACn lock", ACLock2Node);
 }

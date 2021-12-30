@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function DenyNode(config) {
+    function Deny2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -173,5 +173,5 @@ module.exports = function (RED) {
             return "Denied to role '" + who + "' permission to '"+ action +"' on resource '" + what + "'.";
         }
     }
-    RED.nodes.registerType("deny", DenyNode);
+    RED.nodes.registerType("ACn deny", Deny2Node);
 }

@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function RemoveNode(config) {
+    function Remove2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -220,5 +220,5 @@ module.exports = function (RED) {
             }
         }
     }
-    RED.nodes.registerType("remove", RemoveNode);
+    RED.nodes.registerType("ACn remove", Remove2Node);
 }

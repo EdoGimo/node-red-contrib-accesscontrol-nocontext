@@ -1,14 +1,14 @@
 {
 	"name": "node-red-contrib-accesscontrol-nocontext",
-	"version": "0.9.1",
+	"version": "1.0.2",
 	"description": "Node-RED wrapper for the accesscontrol npm module. Without using context.",
-	"homepage": "https://flows.nodered.org/node/node-red-contrib-accesscontrol",
+	"homepage": "https://flows.nodered.org/node/node-red-contrib-accesscontrol-nocontext",
 	"dependencies": {
 		"accesscontrol": "2.2.1"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/edogimo/node-red-contrib-accesscontrol.git"
+		"url": "https://github.com/edogimo/node-red-contrib-accesscontrol-nocontext.git"
 	},
 	"keywords": [
 		"node-red",
@@ -22,16 +22,16 @@
 	],
 	"node-red": {
 		"nodes": {
-			"ACInit": "accesscontrol/ac_init.js",
-			"ACExport": "accesscontrol/ac_export.js",
-			"ACImport": "accesscontrol/ac_import.js",
-			"Permission": "accesscontrol/permission.js",
-			"Permissions": "accesscontrol/permissions.js",
-			"Grant": "accesscontrol/grant.js",
-			"Deny": "accesscontrol/deny.js",
-			"Extend": "accesscontrol/extend.js",
-			"Remove": "accesscontrol/remove.js",
-			"Lock": "accesscontrol/ac_lock.js"
+			"ACInit2": "accesscontrol/ac_init.js",
+			"ACExport2": "accesscontrol/ac_export.js",
+			"ACImport2": "accesscontrol/ac_import.js",
+			"Permission2": "accesscontrol/permission.js",
+			"Permissions2": "accesscontrol/permissions.js",
+			"Grant2": "accesscontrol/grant.js",
+			"Deny2": "accesscontrol/deny.js",
+			"Extend2": "accesscontrol/extend.js",
+			"Remove2": "accesscontrol/remove.js",
+			"Lock2": "accesscontrol/ac_lock.js"
 		}
 	},
 	"devDependencies": {

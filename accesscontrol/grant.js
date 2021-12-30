@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function GrantNode(config) {
+    function Grant2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -224,5 +224,5 @@ module.exports = function (RED) {
             }
         }
     }
-    RED.nodes.registerType("grant", GrantNode);
+    RED.nodes.registerType("ACn grant", Grant2Node);
 }

@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function ACExportNode(config) {
+    function ACExport2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -59,5 +59,5 @@ module.exports = function (RED) {
             return Object.keys(object).length === 0;
         }
     }
-    RED.nodes.registerType("AC export", ACExportNode);
+    RED.nodes.registerType("ACn export", ACExport2Node);
 }

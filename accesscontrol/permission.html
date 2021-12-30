@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    RED.nodes.registerType('permission', {
-        category: 'access control',
+    RED.nodes.registerType('ACn permission', {
+        category: 'strict access control',
         color: '#87a980',
         defaults: {
             name: { value: "" },
@@ -38,7 +38,7 @@
 </script>
 
 
-<script type="text/html" data-template-name="permission">
+<script type="text/html" data-template-name="ACn permission">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -72,7 +72,7 @@
     
 </script>
 
-<script type="text/html" data-help-name="permission">
+<script type="text/html" data-help-name="ACn permission">
     <p>Checks if a specified role has a certain permission to access an object, without taking into consideration attributes.</p> 
     <p>However, to check permissions, it is preferred to use the <b>permissions</b> node as it supports control of more permissions at once, along with attributes. The present node is not removed to offer a way to access directly the specified attributes.</p>
     <p>The attributes that can be set are:</p>

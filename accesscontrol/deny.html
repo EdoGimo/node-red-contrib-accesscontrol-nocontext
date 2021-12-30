@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    RED.nodes.registerType('deny', {
-        category: 'access control',
+    RED.nodes.registerType('ACn deny', {
+        category: 'strict access control',
         color: '#ca9758',
         defaults: {
             name: { value: "" },
@@ -113,7 +113,7 @@
 </script>
 
 
-<script type="text/html" data-template-name="deny">
+<script type="text/html" data-template-name="ACn deny">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -219,7 +219,7 @@
     
 </script>
 
-<script type="text/html" data-help-name="deny">
+<script type="text/html" data-help-name="ACn deny">
     <p>Denies to a certain role permission to access an object.</p>
     <p>The attributes that can be set are:</p>
     <ul>

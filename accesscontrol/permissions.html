@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    RED.nodes.registerType('permissions', {
-        category: 'access control',
+    RED.nodes.registerType('ACn permissions', {
+        category: 'strict access control',
         color: '#87a980',
         defaults: {
             name: { value: "" },
@@ -149,7 +149,7 @@
 </script>
 
 
-<script type="text/html" data-template-name="permissions">
+<script type="text/html" data-template-name="ACn permissions">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -279,7 +279,7 @@
     
 </script>
 
-<script type="text/html" data-help-name="permissions">
+<script type="text/html" data-help-name="ACn permissions">
     <p>Checks if a specified role has certain permissionss to access an object. Similar to permission, but supports "msg" for the CRUD fields, the evaluation of multiple permissions concurrently and takes into account CRUD attributes.</p>
     <p>The attributes that can be set are:</p>
     <ul>

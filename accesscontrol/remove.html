@@ -1,6 +1,6 @@
 <script type="text/javascript">
-    RED.nodes.registerType('remove', {
-        category: 'access control',
+    RED.nodes.registerType('ACn remove', {
+        category: 'strict access control',
         color: '#ca9758',
         defaults: {
             name: { value: "" },
@@ -37,7 +37,7 @@
 </script>
 
 
-<script type="text/html" data-template-name="remove">
+<script type="text/html" data-template-name="ACn remove">
     <div class="form-row">
         <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
         <input type="text" id="node-input-name" placeholder="Name">
@@ -70,7 +70,7 @@
     
 </script>
 
-<script type="text/html" data-help-name="remove">
+<script type="text/html" data-help-name="ACn remove">
     <p>Removes a role or resource from the current Access Control instance. To remove more roles or resources at once, provide an array via msg or comma-separate all the values in the string input.</p>
     <p>Check the force box to remove roles or resources even when one of the values provided in the array does not exist (it usually stops in that case).</p>
     <p>Some characters are not supported in the string field of role and resource: &,<,>,",',/ and `. However, checks are not made on the content of msg attributes, if those are instead specified.</p>

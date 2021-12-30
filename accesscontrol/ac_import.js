@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function ACImportNode(config) {
+    function ACImport2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -70,5 +70,5 @@ module.exports = function (RED) {
             return Object.keys(object).length === 0;
         }
     }
-    RED.nodes.registerType("AC import", ACImportNode);
+    RED.nodes.registerType("ACn import", ACImport2Node);
 }

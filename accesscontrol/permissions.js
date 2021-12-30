@@ -1,5 +1,5 @@
 module.exports = function (RED) {
-    function PermissionsNode(config) {
+    function Permissions2Node(config) {
         RED.nodes.createNode(this, config);
 
         //options
@@ -261,5 +261,5 @@ module.exports = function (RED) {
         }
     }
 
-    RED.nodes.registerType("permissions", PermissionsNode);
+    RED.nodes.registerType("ACn permissions", Permissions2Node);
 }
